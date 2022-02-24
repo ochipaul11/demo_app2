@@ -16,37 +16,55 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Awesome App"),
       ),
-      body: Container(
-        color: Colors.amberAccent,
-        height: 500,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              width: 100,
-              height: 100,
-              color: Colors.grey,
-
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              width: 100,
-              height: 100,
-              color: Colors.blue,
-
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              width: 100,
-              height: 100,
-              color: Colors.black,
-
-            ),
-          ],
-        )
+      body: Center(
+        child: Container(
+          color: Colors.teal,
+          height: 100,
+          width: 100,
+        ),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: const EdgeInsets.all(0),
+          children: <Widget>[
+            // DrawerHeader(
+            //   child: Text('I am a header'),
+            //  decoration: BoxDecoration(color: Colors.grey),
+            //  ),
+            UserAccountsDrawerHeader(
+                accountName: Text('PaulOkeyo'),
+                accountEmail: Text('paulokeyo@hotmail.com'),
+        currentAccountPicture: CircleAvatar(
+          backgroundImage: NetworkImage('https://unsplash.com/photos/EAvS-4KnGrk'),
+        )
+            ),
+
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("Paul Okeyo"),
+              subtitle: Text('Junior Developer'),
+              trailing: Icon(Icons.edit),
+            ),
+            ListTile(
+              leading: Icon(Icons.email),
+              title: Text("Email"),
+              subtitle: Text('Paulokeyo@hotmail.com'),
+              trailing: Icon(Icons.edit),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("Paul Okeyo"),
+              subtitle: Text('Junior Developer'),
+              trailing: Icon(Icons.edit),
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.edit),
+      ),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.
     );
   }
 }
