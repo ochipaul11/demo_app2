@@ -7,6 +7,7 @@ import 'drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+  static const String routeName = "/home";
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -16,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   // var myText = "Change My Name";
   // TextEditingController _nameController = TextEditingController();
 
-  //var link = "https://jsonplaceholder.typicode.com/photos";
   var url = Uri.parse('https://jsonplaceholder.typicode.com/photos');
 
   var data;
@@ -44,6 +44,13 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.black12,
       appBar: AppBar(
         title: Text("Awesome Aplication"),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.exit_to_app))
+        ],
       ),
       body: data != null
           ? ListView.builder(itemBuilder:
