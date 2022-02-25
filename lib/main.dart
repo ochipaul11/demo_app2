@@ -7,26 +7,72 @@ void main() {
   ));
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var myText = "Change My Name";
+  TextEditingController _nameController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black12,
       appBar: AppBar(
         title: Text("Awesome App"),
       ),
       body: Center(
-        child: Container(
-          color: Colors.teal,
-          height: 100,
-          width: 100,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Card(
+              child: Column(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/pic1.jpg',
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(myText,
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter some text',
+                          labelText: "Name"),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
         ),
       ),
       drawer: Drawer(
         child: ListView(
           padding: const EdgeInsets.all(0),
-          children: <Widget>[
+          children: const <Widget>[
             // DrawerHeader(
             //   child: Text('I am a header'),
             //  decoration: BoxDecoration(color: Colors.grey),
@@ -34,10 +80,10 @@ class HomePage extends StatelessWidget {
             UserAccountsDrawerHeader(
                 accountName: Text('PaulOkeyo'),
                 accountEmail: Text('paulokeyo@hotmail.com'),
-        currentAccountPicture: CircleAvatar(
-          backgroundImage: NetworkImage('https://unsplash.com/photos/EAvS-4KnGrk'),
-        )
-            ),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage:
+                      NetworkImage('https://unsplash.com/photos/EAvS-4KnGrk'),
+                )),
 
             ListTile(
               leading: Icon(Icons.person),
@@ -61,8 +107,11 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.edit),
+        onPressed: () {
+          myText = _nameController.text;
+          setState(() {});
+        },
+        child: Icon(Icons.send),
       ),
       //floatingActionButtonLocation: FloatingActionButtonLocation.
     );
