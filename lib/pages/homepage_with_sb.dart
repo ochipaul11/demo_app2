@@ -7,21 +7,28 @@ import 'package:http/http.dart' as http;
 import '../widgets/drawer.dart';
 import 'login_page.dart';
 
-class HomePageFB extends StatefulWidget {
-  const HomePageFB({Key? key}) : super(key: key);
-  static const String routeName = "/homeFB";
+class HomePageSB extends StatefulWidget {
+  const HomePageSB({Key? key}) : super(key: key);
+  static const String routeName = "/homeSB";
 
   @override
-  State<HomePageFB> createState() => _HomePageFBState();
+  State<HomePageSB> createState() => _HomePageSBState();
 }
 
-class _HomePageFBState extends State<HomePageFB> {
+class _HomePageSBState extends State<HomePageSB> {
   // var myText = "Change My Name";
   // TextEditingController _nameController = TextEditingController();
 
   var url = Uri.parse('https://jsonplaceholder.typicode.com/photos/');
 
   var data;
+
+  Stream<List<String>> getStream(){
+    var data = Stream<List<String>>.fromIterable(
+        [List<String>.generate(20, (index) => "Item $index")]);
+    return data;
+  }
+
 //Future used for performing asynchronous tasks
 
   Future fetchData() async {
@@ -46,8 +53,8 @@ class _HomePageFBState extends State<HomePageFB> {
               icon: Icon(Icons.exit_to_app))
         ],
       ),
-      body: FutureBuilder(
-        future: fetchData(),
+      body: StreamBuilder(
+        stream: getStream(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.active:
@@ -64,8 +71,7 @@ class _HomePageFBState extends State<HomePageFB> {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(data[index]["title"]),
-                    subtitle: Text("ID: ${data[index]["id"]}"),
+                    title: Text(data[index]),
                     //        leading: Image.network(data[index]["thumbnailUrl"]),
                   );
                 },
