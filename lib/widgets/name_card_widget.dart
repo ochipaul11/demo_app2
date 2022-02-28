@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 class NameCardWidget extends StatelessWidget {
+  static const String routeName = "/namecard";
+
   const NameCardWidget({
     Key? key,
     required this.myText,
     required TextEditingController nameController,
-  }) : _nameController = nameController, super(key: key);
+  })  : _nameController = nameController,
+        super(key: key);
 
   final String myText;
   final TextEditingController _nameController;
@@ -22,8 +25,7 @@ class NameCardWidget extends StatelessWidget {
             height: 20,
           ),
           Text(myText,
-              style:
-              TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(

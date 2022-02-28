@@ -1,4 +1,4 @@
-import 'package:demo_app2/homepage.dart';
+import 'package:demo_app2/pages/homepage_with_fb.dart';
 import 'package:demo_app2/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +62,7 @@ class _LoginpageState extends State<Loginpage> {
                           //         builder: ((context) => HomePage())));
 
                         //  Navigator.pushNamed(context, HomePage.routeName);
-                        Navigator.pushReplacementNamed(context, HomePage.routeName);
+                        Navigator.pushReplacementNamed(context, HomePageFB.routeName);
                         },
                         child: Text("Sign In")),
                   ],

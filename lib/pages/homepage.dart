@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import 'package:demo_app2/login_page.dart';
+
 import 'package:demo_app2/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'drawer.dart';
+import '../widgets/drawer.dart';
+import 'login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
               onPressed: () {
                 Constants.prefs?.setBool("loggedIn", false);
-              //  Navigator.pop(context);
+                //  Navigator.pop(context);
                 Navigator.pushReplacementNamed(context, Loginpage.routeName);
               },
               icon: Icon(Icons.exit_to_app))
@@ -58,13 +59,13 @@ class _HomePageState extends State<HomePage> {
       ),
       body: data != null
           ? ListView.builder(itemBuilder:
-        (context,index){
-            return ListTile(
-              title: Text(data[index]["title"]),
-              subtitle: Text("ID: ${data[index]["id"]}"),
-      //        leading: Image.network(data[index]["thumbnailUrl"]),
-            );
-        },
+          (context,index){
+        return ListTile(
+          title: Text(data[index]["title"]),
+          subtitle: Text("ID: ${data[index]["id"]}"),
+          //        leading: Image.network(data[index]["thumbnailUrl"]),
+        );
+      },
         itemCount: data.length,)
           : Center(
         child: CircularProgressIndicator(),
