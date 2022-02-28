@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:demo_app2/login_page.dart';
+import 'package:demo_app2/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   // var myText = "Change My Name";
   // TextEditingController _nameController = TextEditingController();
 
-  var url = Uri.parse('https://jsonplaceholder.typicode.com/photos');
+  var url = Uri.parse('https://jsonplaceholder.typicode.com/photos/');
 
   var data;
 
@@ -47,7 +49,9 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                Constants.prefs?.setBool("loggedIn", false);
+              //  Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, Loginpage.routeName);
               },
               icon: Icon(Icons.exit_to_app))
         ],
@@ -58,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             return ListTile(
               title: Text(data[index]["title"]),
               subtitle: Text("ID: ${data[index]["id"]}"),
-              leading: Image.network(data[index]["url"]),
+      //        leading: Image.network(data[index]["thumbnailUrl"]),
             );
         },
         itemCount: data.length,)
